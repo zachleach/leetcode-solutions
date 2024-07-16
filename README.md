@@ -25,7 +25,7 @@ class Solution:
 ## 347. Top K Frequent Elements
 https://leetcode.com/problems/top-k-frequent-elements/description/
 
-```
+```py
 class Solution:
 	def topKFrequent(self, arr, k):
 		table = defaultdict(int)
