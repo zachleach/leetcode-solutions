@@ -62,11 +62,11 @@ class Solution:
 		for x in num_set:
 			if x - 1 not in num_set:
 				y = x
-				count = 0
 				while y in num_set:
 					y += 1
-					count += 1
-				best = max(best, count)
+
+				best = max(best, y - x)
+
 		return best
 ```
 
