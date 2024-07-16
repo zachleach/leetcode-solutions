@@ -1,4 +1,27 @@
 
+## 424. Longest Repeating Character Replacement
+https://leetcode.com/problems/longest-repeating-character-replacement/description/
+
+```py
+class Solution:
+	def characterReplacement(self, arr, k):
+		freq = defaultdict(int)
+		best, l, n = 0, 0, len(arr)
+
+		for r in range(n):
+			freq[arr[r]] += 1
+			most_freq = max(freq, key=lambda x: freq[x])
+			amt_most_freq = freq[most_freq]
+
+			if (r - l + 1) - amt_most_freq > k:
+				freq[arr[l]] -= 1
+				l += 1
+			
+			best = max(best, r - l + 1)
+		
+		return best
+```
+
 ## 3. Longest Substring Without Repeating Characters
 https://leetcode.com/problems/longest-substring-without-repeating-characters/description/
 
