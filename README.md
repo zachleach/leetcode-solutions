@@ -28,19 +28,14 @@ https://leetcode.com/problems/longest-substring-without-repeating-characters/des
 ```py
 class Solution:
 	def lengthOfLongestSubstring(self, arr):
-		l, r = 0, 0
-		best = 0
-		seen = set()
-		n = len(arr)
-		while r < n:
-			if arr[r] not in seen:
-				seen.add(arr[r])
-				best = max(best, len(seen))
-				r += 1
-				continue
+		n, l, best, window = len(arr), 0, 0, set()
+		for r in range(n):
+			while arr[r] in window:
+				window.remove(arr[l])
+				l += 1
 
-			seen.remove(arr[l])
-			l += 1
+			window.add(arr[r])
+			best = max(best, len(window))
 
 		return best
 ```
