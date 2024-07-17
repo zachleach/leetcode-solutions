@@ -101,7 +101,7 @@ class Solution:
 		for r in range(n):
 			total += arr[r]
 			if total < 0:
-				l = r + 1	#	check this
+				l = r + 1
 				total = 0
 
 		return -1 if sum(arr) < 0 else l
