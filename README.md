@@ -212,3 +212,20 @@ class Solution:
 
 		return left + [[l, r]] + right
 ```
+
+## 167. Two Sum II - Input Array Is Sorted
+https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
+
+```py
+class Solution:
+	def twoSum(self, arr, target):
+		n = len(arr)
+		l, r = 0, n - 1
+		while l < r:
+			if arr[l] + arr[r] < target:
+				l += 1
+			elif arr[l] + arr[r] > target:
+				r -= 1
+			else:
+				return [l + 1, r + 1]
+```
