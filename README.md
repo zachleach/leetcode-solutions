@@ -1,3 +1,27 @@
+## 150. evaluate reverse polish notation
+https://leetcode.com/problems/evaluate-reverse-polish-notation/description/
+
+```py
+class Solution:
+	def evalRPN(self, tokens):
+		op_map = {
+			'+': operator.add,
+			'-': operator.sub,
+			'*': operator.mul,
+			'/': lambda a, b: math.trunc(a / b)
+		}
+
+		stack = []
+		for token in tokens:
+			if token in op_map:
+				func = op_map[token]
+				a, b = stack.pop(-2), stack.pop(-1)
+				stack.append(func(a, b))
+			else:
+				stack.append(int(token))
+
+		return stack[-1]
+```
 
 ## 424. Longest Repeating Character Replacement
 https://leetcode.com/problems/longest-repeating-character-replacement/description/
