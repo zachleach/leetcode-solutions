@@ -102,17 +102,14 @@ class Solution:
 		n = len(gas)
 		arr = [gas[i] - cost[i] for i in range(n)]
 
-		total = 0
-		l, r = 0, 0
-		while r < n:
+		total, l = 0, 0
+		for r in range(n):
 			total += arr[r]
-			r += 1
-
 			if total < 0:
-				l = r		#	reset the window
-				total = 0	#	reset the total
+				l = r + 1	#	check this
+				total = 0
 
-		return l if sum(arr) >= 0 else -1
+		return -1 if sum(arr) < 0 else l
 ```
 
 
