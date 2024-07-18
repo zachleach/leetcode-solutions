@@ -180,36 +180,23 @@ class Solution:
 ## 15. 3Sum
 https://leetcode.com/problems/3sum/description/
 
-TODO: FIX SCUFFED IMPLEMENTATION
-
 ```py
 class Solution:
 	def threeSum(self, arr):
-		result = []
-		n = len(arr)
 		arr.sort()
+		n, result = len(arr), set()
 
 		for i in range(n):
-			#	avoid duplicates (a[i], ?, ?)
-			if i > 0 and arr[i - 1] == arr[i]:
-				continue
-
 			l, r = i + 1, n - 1
 			while l < r:
-				tsum = arr[i] + arr[l] + arr[r]
-				if (tsum < 0):
-					l = l + 1
-				elif (tsum > 0):
-					r = r - 1
-				else:
-					result += [(arr[i], arr[l], arr[r])]
-					l, r = l + 1, r - 1
+				total = arr[i] + arr[l] + arr[r]
+				l += 1 if total < 0 else 0
+				r -= 1 if total > 0 else 0
+				if total == 0:
+					result.add((arr[i], arr[l], arr[r]))
+					l += 1
 
-					#	avoid duplicates (a[i], a[l], ?)
-					while l < n and arr[l - 1] == arr[l]:
-						l = l + 1
-
-		return result
+		return list(result)
 ```
 
 ## 57. Insert Interval
