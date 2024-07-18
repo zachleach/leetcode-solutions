@@ -190,13 +190,15 @@ class Solution:
 			l, r = i + 1, n - 1
 			while l < r:
 				total = arr[i] + arr[l] + arr[r]
-				l += 1 if total < 0 else 0
-				r -= 1 if total > 0 else 0
+				if total < 0: l += 1
+				if total > 0: r -= 1
 				if total == 0:
 					result.add((arr[i], arr[l], arr[r]))
 					l += 1
 
 		return list(result)
+
+
 ```
 
 ## 57. Insert Interval
