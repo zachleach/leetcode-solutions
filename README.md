@@ -1,3 +1,34 @@
+## 200. Number of Islands
+https://leetcode.com/problems/number-of-islands/description/
+
+```py
+class Solution:
+	def numIslands(self, grid):
+		count = 0
+		h, w = len(grid), len(grid[0])
+		for y in range(h):
+			for x in range(w):
+				if grid[y][x] == '1':
+					self.dfs(grid, y, x)
+					count += 1
+
+		return count
+
+	def dfs(self, grid, y, x):
+		if y < 0 or y > len(grid) - 1:
+			return
+		if x < 0 or x > len(grid[0]) - 1:
+			return
+		if grid[y][x] != '1':
+			return
+
+		grid[y][x] = '#'
+		self.dfs(grid, y + 1, x)
+		self.dfs(grid, y - 1, x)
+		self.dfs(grid, y, x + 1)
+		self.dfs(grid, y, x - 1)
+```
+
 ## 150. evaluate reverse polish notation
 https://leetcode.com/problems/evaluate-reverse-polish-notation/description/
 
@@ -197,8 +228,6 @@ class Solution:
 					l += 1
 
 		return list(result)
-
-
 ```
 
 ## 57. Insert Interval
