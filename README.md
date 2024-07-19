@@ -85,7 +85,7 @@ class Solution:
 	def lengthOfLongestSubstring(self, arr):
 		n, l, best, window = len(arr), 0, 0, set()
 		for r in range(n):
-			while arr[r] in window:
+			if arr[r] in window:
 				window.remove(arr[l])
 				l += 1
 
