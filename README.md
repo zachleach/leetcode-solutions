@@ -1,3 +1,38 @@
+## 695. Max Area of Island
+https://leetcode.com/problems/max-area-of-island/description/
+
+```py
+class Solution:
+	def maxAreaOfIsland(self, grid):
+		best = 0
+		for y in range(len(grid)):
+			for x in range(len(grid[0])):
+				if grid[y][x] == 1:
+					size = self.dfs(grid, y, x)
+					best = max(best, size)
+		return best
+
+	def dfs(self, grid, y, x):
+		if y < 0 or x < 0:
+			return 0
+		if y == len(grid) or x == len(grid[0]):
+			return 0
+		print(y, x)
+		if grid[y][x] != 1:
+			return 0
+
+
+		grid[y][x] = -1
+
+		size = 1
+		size += self.dfs(grid, y + 1, x)
+		size += self.dfs(grid, y - 1, x)
+		size += self.dfs(grid, y, x + 1)
+		size += self.dfs(grid, y, x - 1)
+
+		return size
+```
+
 ## 133. Clone Graph
 https://leetcode.com/problems/clone-graph/description/
 
