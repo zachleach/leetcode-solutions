@@ -1,3 +1,26 @@
+## 133. Clone Graph
+https://leetcode.com/problems/clone-graph/description/
+
+```py
+class Solution:
+	def cloneGraph(self, node):
+		return self.dfs(node, defaultdict(Node))
+
+	def dfs(self, n, visited):
+		if n is None:
+			return None
+		if n.val in visited:
+			return visited[n.val]
+
+		new_node = Node(n.val)
+		visited[n.val] = new_node
+
+		for u in n.neighbors:
+			new_node.neighbors += [self.dfs(u, visited)]
+
+		return new_node
+```
+
 ## 200. Number of Islands
 https://leetcode.com/problems/number-of-islands/description/
 
