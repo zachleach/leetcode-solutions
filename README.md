@@ -1,3 +1,46 @@
+## 994. Rotting Oranges
+https://leetcode.com/problems/rotting-oranges/
+```py
+class Solution:
+	def orangesRotting(self, grid):
+		queue = collections.deque()
+		fresh_count = 0
+
+		for y in range(len(grid)):
+			for x in range(len(grid[0])):
+				if grid[y][x] == 2:
+					queue += [(y, x)]
+				if grid[y][x] == 1:
+					fresh_count += 1
+
+		if fresh_count == 0:
+			return 0
+
+		bfs_counter = 0
+		while len(queue) != 0:
+			bfs_counter += 1
+			for _ in range(len(queue)):
+				(yy, xx) = queue.popleft()
+				for (dy, dx) in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+					y, x = yy + dy, xx + dx
+					if y < 0 or x < 0:
+						continue
+					if y == len(grid) or x == len(grid[0]):
+						continue
+					if grid[y][x] != 1:
+						continue
+
+					grid[y][x] = 2
+					queue.append((y, x))
+
+		for y in range(len(grid)):
+			for x in range(len(grid[0])):
+				if grid[y][x] == 1:
+					return -1
+
+		return bfs_counter - 1
+```
+
 ## 695. Max Area of Island
 https://leetcode.com/problems/max-area-of-island/description/
 
