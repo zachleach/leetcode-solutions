@@ -1,3 +1,30 @@
+## 206. Reverse Linked List
+https://leetcode.com/problems/reverse-linked-list/
+```py
+class Solution:
+	def reverseList(self, head):
+		prev = None
+		curr = head
+		while curr is not None:
+			temp = curr.next
+			curr.next = prev
+			prev = curr
+			curr = temp
+
+		return prev
+
+class Solution:
+	def reverseList(self, head):
+		def dfs(l, r):
+			if r is None:
+				return l
+			temp = r.next
+			r.next = l
+			return dfs(r, temp)
+
+		return dfs(None, head)
+```
+
 ## 994. Rotting Oranges
 https://leetcode.com/problems/rotting-oranges/
 ```py
