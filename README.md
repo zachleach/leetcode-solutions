@@ -12,7 +12,8 @@ class Solution:
 			curr = temp
 
 		return prev
-
+```
+```py
 class Solution:
 	def reverseList(self, head):
 		def dfs(l, r):
